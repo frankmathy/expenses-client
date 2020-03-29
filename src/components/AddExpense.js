@@ -1,5 +1,8 @@
 import React from "react";
 
+import { connect } from "react-redux";
+import { addExpense } from "../redux/actions";
+
 class AddExpense extends React.Component {
   constructor(props) {
     super(props);
@@ -8,6 +11,11 @@ class AddExpense extends React.Component {
 
   updateInpit = input => {
     this.setState({ input });
+  };
+
+  handleAddExpense = () => {
+    this.props.addExpense(this.state.input);
+    this.setState({ input: "" });
   };
 
   render() {
@@ -25,4 +33,4 @@ class AddExpense extends React.Component {
   }
 }
 
-export default AddExpense;
+export default connect(null, { addExpense })(AddExpense);

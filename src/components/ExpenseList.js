@@ -1,6 +1,9 @@
 import React from "react";
 import Expense from "./Expense";
 
+import { connect } from "react-redux";
+import { getExpenses } from "../redux/selectors";
+
 const ExpenseList = ({ expenses }) => (
   <ul className="expense-list">
     {expenses && expenses.length
@@ -11,4 +14,9 @@ const ExpenseList = ({ expenses }) => (
   </ul>
 );
 
-export default ExpenseList;
+const mapStateToProps = store => {
+  const expenses = getExpenses(store);
+  return { expenses };
+};
+
+export default connect(mapStateToProps)(ExpenseList);
